@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Vogue | Luxury E-Commerce</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#111111',
+                            accent: '#C5A059', /* Luxurious Champagne Gold */
+                            light: '#F9F8F6',
+                            muted: '#777777'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-brand-light text-brand-dark antialiased selection:bg-brand-accent selection:text-white">
+
+    <!-- Sticky Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-200 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" id="store-logo-name" class="font-serif text-2xl md:text-3xl font-bold tracking-widest text-brand-dark">AURA VOGUE</a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm tracking-wide">
+                <a href="#home" class="hover:text-brand-accent transition-colors">Home</a>
+                <a href="#shop" class="hover:text-brand-accent transition-colors">Shop</a>
+                <a href="#categories" class="hover:text-brand-accent transition-colors">Categories</a>
+                <a href="#contact" class="hover:text-brand-accent transition-colors">Contact</a>
+            </nav>
+
+            <!-- Actions (Search & Cart) -->
+            <div class="flex items-center space-x-5">
+                <button id="search-btn" class="text-xl hover:text-brand-accent transition-colors"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button id="cart-toggle-btn" class="relative text-xl hover:text-brand-accent transition-colors">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-brand-accent text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                </button>
+                <button id="mobile-menu-btn" class="md:hidden text-xl hover:text-brand-accent"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200 px-6 py-4 space-y-3 font-medium">
+            <a href="#home" class="block hover:text-brand-accent">Home</a>
+            <a href="#shop" class="block hover:text-brand-accent">Shop</a>
+            <a href="#categories" class="block hover:text-brand-accent">Categories</a>
+            <a href="#contact" class="block hover:text-brand-accent">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-brand-dark text-white overflow-hidden py-24 md:py-36">
+        <div class="absolute inset-0 opacity-40">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1600&auto=format&fit=crop" alt="Hero Background" class="w-full h-full object-cover">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
+            <div class="max-w-xl space-y-6">
+                <span id="store-tagline" class="text-brand-accent uppercase tracking-widest text-xs font-bold tracking-widest bg-white/10 px-3 py-1.5 rounded">Redefining Modern Luxury</span>
+                <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">Timeless Design, Uncompromising Quality.</h1>
+                <p class="text-gray-300 text-base md:text-lg">Discover curated capsule collections designed for the modern tastemaker.</p>
+                <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#shop" class="bg-brand-accent hover:bg-amber-600 text-white px-8 py-4 font-semibold tracking-wide transition-all shadow-lg rounded-sm text-center">Shop Collection</a>
+                    <a href="#categories" class="border border-white/40 hover:border-white text-white px-8 py-4 font-semibold tracking-wide transition-all rounded-sm text-center">Explore Categories</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="font-serif text-3xl font-bold">Shop by Category</h2>
+            <p class="text-brand-muted mt-2">Explore our core style pillars</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div onclick="filterCategory('Men')" class="group relative h-80 overflow-hidden cursor-pointer rounded-sm shadow-md">
+                <img src="https://images.unsplash.com/photo-1488161628813-04466f872be2?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                    <h3 class="text-white font-serif text-2xl font-bold border-b-2 border-brand-accent pb-1">Men's Edit</h3>
+                </div>
+            </div>
+            <div onclick="filterCategory('Women')" class="group relative h-80 overflow-hidden cursor-pointer rounded-sm shadow-md">
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                    <h3 class="text-white font-serif text-2xl font-bold border-b-2 border-brand-accent pb-1">Women's Edit</h3>
+                </div>
+            </div>
+            <div onclick="filterCategory('Unisex')" class="group relative h-80 overflow-hidden cursor-pointer rounded-sm shadow-md">
+                <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                    <h3 class="text-white font-serif text-2xl font-bold border-b-2 border-brand-accent pb-1">Unisex & Streetwear</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Grid -->
+    <section id="shop" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+            <div>
+                <span class="text-brand-accent uppercase tracking-widest text-xs font-bold">Curated Inventory</span>
+                <h2 class="font-serif text-3xl font-bold mt-1">Featured Releases</h2>
+            </div>
+            <!-- Category Filter Buttons -->
+            <div class="flex flex-wrap gap-2 mt-4 md:mt-0" id="filter-buttons">
+                <button onclick="filterCategory('All')" class="px-4 py-2 text-sm font-medium bg-brand-dark text-white rounded-sm active-filter">All</button>
+                <button onclick="filterCategory('Men')" class="px-4 py-2 text-sm font-medium bg-gray-200 text-brand-dark hover:bg-gray-300 rounded-sm">Men</button>
+                <button onclick="filterCategory('Women')" class="px-4 py-2 text-sm font-medium bg-gray-200 text-brand-dark hover:bg-gray-300 rounded-sm">Women</button>
+                <button onclick="filterCategory('Unisex')" class="px-4 py-2 text-sm font-medium bg-gray-200 text-brand-dark hover:bg-gray-300 rounded-sm">Unisex</button>
+            </div>
+        </div>
+
+        <!-- Products Container -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Dynamically populated by app.js -->
+        </div>
+    </section>
+
+    <!-- Cart Drawer Modal -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="cart-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
+                <div class="flex items-center justify-between px-6 py-5 border-b border-gray-200">
+                    <h2 class="font-serif text-xl font-bold">Your Shopping Bag</h2>
+                    <button id="close-cart" class="text-gray-400 hover:text-brand-dark text-xl"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <!-- Cart Items List -->
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4 divide-y divide-gray-100">
+                    <!-- Dynamically populated -->
+                </div>
+                <!-- Cart Footer & Checkout -->
+                <div class="border-t border-gray-200 p-6 space-y-4 bg-gray-50">
+                    <div class="flex justify-between text-lg font-bold">
+                        <span>Subtotal:</span>
+                        <span id="cart-subtotal">0 ETB</span>
+                    </div>
+                    <p class="text-xs text-brand-muted">Shipping & local taxes calculated at checkout.</p>
+                    <button id="checkout-btn" class="w-full bg-brand-dark hover:bg-brand-accent text-white py-4 font-semibold tracking-wide transition-colors rounded-sm shadow">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal (WhatsApp & Bank Options) -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden">
+        <div class="bg-white rounded-sm max-w-lg w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button id="close-checkout" class="absolute top-4 right-4 text-gray-400 hover:text-brand-dark text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="font-serif text-2xl font-bold mb-2">Complete Your Order</h3>
+            <p class="text-sm text-brand-muted mb-6">Enter your details below. You can send your order via WhatsApp or pay directly via Telebirr / CBE.</p>
+
+            <form id="order-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider mb-1">Full Name</label>
+                    <input type="text" id="cust-name" required class="w-full px-4 py-3 border border-gray-300 rounded-sm focus:outline-none focus:border-brand-accent">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider mb-1">Phone Number (WhatsApp / Mobile)</label>
+                    <input type="tel" id="cust-phone" required placeholder="e.g., 0911234567" class="w-full px-4 py-3 border border-gray-300 rounded-sm focus:outline-none focus:border-brand-accent">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider mb-1">Delivery Address (City / Sub-city / Specific Area)</label>
+                    <textarea id="cust-address" required rows="2" class="w-full px-4 py-3 border border-gray-300 rounded-sm focus:outline-none focus:border-brand-accent"></textarea>
+                </div>
+
+                <!-- Payment Method Select -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider mb-2">Payment Method</label>
+                    <div class="grid grid-cols-3 gap-3">
+                        <label class="border p-3 text-center rounded-sm cursor-pointer hover:border-brand-accent flex flex-col items-center justify-center">
+                            <input type="radio" name="payment" value="WhatsApp" checked class="mb-1">
+                            <span class="text-xs font-bold">WhatsApp Order</span>
+                        </label>
+                        <label class="border p-3 text-center rounded-sm cursor-pointer hover:border-brand-accent flex flex-col items-center justify-center">
+                            <input type="radio" name="payment" value="Telebirr" class="mb-1">
+                            <span class="text-xs font-bold">Telebirr</span>
+                        </label>
+                        <label class="border p-3 text-center rounded-sm cursor-pointer hover:border-brand-accent flex flex-col items-center justify-center">
+                            <input type="radio" name="payment" value="CBE" class="mb-1">
+                            <span class="text-xs font-bold">CBE Bank</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Bank Instructions Box (Dynamic) -->
+                <div id="bank-instructions" class="hidden bg-gray-50 p-4 border border-brand-accent/30 rounded-sm text-xs space-y-1">
+                    <p class="font-bold text-brand-dark mb-1">Payment Instructions:</p>
+                    <p id="bank-detail-text">Transfer total to Telebirr or CBE account and send screenshot on WhatsApp.</p>
+                </div>
+
+                <button type="submit" class="w-full bg-brand-accent hover:bg-amber-600 text-white py-4 font-bold tracking-wide transition-colors rounded-sm shadow">Submit Order & Send via WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-brand-dark text-white pt-16 pb-12 mt-20 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <div class="space-y-4">
+                <h3 class="font-serif text-2xl font-bold tracking-widest footer-store-name">AURA VOGUE</h3>
+                <p class="text-gray-400 text-sm">Elevating your wardrobe with sustainable luxury and minimalist silhouettes.</p>
+            </div>
+            <div>
+                <h4 class="font-bold uppercase tracking-wider text-xs text-brand-accent mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li><a href="#home" class="hover:text-white">Home</a></li>
+                    <li><a href="#shop" class="hover:text-white">Shop Collection</a></li>
+                    <li><a href="#categories" class="hover:text-white">Categories</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold uppercase tracking-wider text-xs text-brand-accent mb-4">Customer Care</h4>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li><a href="#" class="hover:text-white">Shipping & Returns</a></li>
+                    <li><a href="#" class="hover:text-white">Size Guide</a></li>
+                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold uppercase tracking-wider text-xs text-brand-accent mb-4">Connect With Us</h4>
+                <div class="flex space-x-4 text-xl">
+                    <a id="social-ig" href="#" target="_blank" class="hover:text-brand-accent"><i class="fa-brands fa-instagram"></i></a>
+                    <a id="social-tg" href="#" target="_blank" class="hover:text-brand-accent"><i class="fa-brands fa-telegram"></i></a>
+                    <a id="social-tt" href="#" target="_blank" class="hover:text-brand-accent"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+                <p class="text-xs text-gray-400 mt-4">WhatsApp Support: <span id="footer-whatsapp">+251 911 234 567</span></p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-800 pt-6 text-center text-xs text-gray-500">
+            &copy; 2026 <span class="footer-store-name">AURA VOGUE</span>. All rights reserved. Powered by GitHub Pages.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
