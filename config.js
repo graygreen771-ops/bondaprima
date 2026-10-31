@@ -1,64 +1,106 @@
-const STORE_CONFIG = {
+/**
+ * AURA VOGUE - Global Configuration & LocalStorage Persistence Layer
+ */
+
+const CONFIG = {
     storeName: "AURA VOGUE",
-    tagline: "Redefining Modern Minimalist Luxury",
+    tagline: "Minimalist Luxury & Contemporary Silhouettes",
     currency: "ETB",
-    whatsappNumber: "+251911234567", // Replace with your WhatsApp number
-    telebirrNumber: "0911234567",
-    cbeAccount: "1000123456789",
-    cbeAccountName: "Aura Vogue Fashion",
-    socials: {
-        instagram: "https://instagram.com",
+    whatsappNumber: "+251911223344", // Replace with actual business WhatsApp
+    telebirrNumber: "0911223344",     // Replace with actual Telebirr merchant/personal number
+    cbeAccount: {
+        accountName: "Aura Vogue Fashion PLC",
+        accountNumber: "1000293847568",
+        bankName: "Commercial Bank of Ethiopia (CBE)"
+    },
+    socialLinks: {
+        instagram: "https://instagram.com/auravogue",
         telegram: "https://t.me/auravogue",
-        tiktok: "https://tiktok.com"
+        tiktok: "https://tiktok.com/@auravogue"
     }
 };
 
-// Initial products fallback if localStorage is empty
 const INITIAL_PRODUCTS = [
     {
-        id: 1,
-        name: "Minimalist Oversized Linen Shirt",
-        price: 2499,
-        category: "Men",
-        image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=800&auto=format&fit=crop",
-        description: "Breathable pure linen crafted for effortless everyday style."
-    },
-    {
-        id: 2,
-        name: "Modern Chic Wrap Dress",
-        price: 3899,
+        id: "prod-1",
+        name: "Oversized Cashmere Trench",
+        price: 8500,
         category: "Women",
-        image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=800&auto=format&fit=crop",
-        description: "Contemporary haute couture silhouette with premium drape."
+        image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80",
+        description: "Impeccably tailored from ultra-soft Mongolian cashmere blend. Features drop shoulders and a self-tie belt."
     },
     {
-        id: 3,
-        name: "Structured Urban Trench Coat",
-        price: 5299,
-        category: "Unisex",
-        image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=800&auto=format&fit=crop",
-        description: "Sleek, water-resistant outerwear designed for all-season layering."
-    },
-    {
-        id: 4,
-        name: "Tailored Pleated Trousers",
-        price: 2899,
+        id: "prod-2",
+        name: "Architectural Wool Blazer",
+        price: 6200,
         category: "Men",
-        image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=800&auto=format&fit=crop",
-        description: "Crisp pleats and a relaxed tailored fit for sophisticated comfort."
+        image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+        description: "Structured single-breasted blazer crafted from lightweight virgin wool with matte horn buttons."
+    },
+    {
+        id: "prod-3",
+        name: "Pleated Silk Midi Dress",
+        price: 5400,
+        category: "Women",
+        image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80",
+        description: "Fluid silk georgette dress with delicate micro-pleating and an effortless drape."
+    },
+    {
+        id: "prod-4",
+        name: "Minimalist Heavyweight Hoodie",
+        price: 3200,
+        category: "Unisex",
+        image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80",
+        description: "Crafted from 480GSM organic French terry cotton. Clean lines with zero exterior branding."
+    },
+    {
+        id: "prod-5",
+        name: "Tailored Pleated Trousers",
+        price: 4100,
+        category: "Men",
+        image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80",
+        description: "High-waisted relaxed fit trousers with sharp front creases and adjustable side tabs."
+    },
+    {
+        id: "prod-6",
+        name: "Structured Leather Tote",
+        price: 7500,
+        category: "Unisex",
+        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80",
+        description: "Full-grain Italian calfskin tote designed with minimalist geometry and reinforced handles."
     }
 ];
 
-// Helper to get products (checks localStorage first, falls back to INITIAL_PRODUCTS)
-function getStoredProducts() {
-    const saved = localStorage.getItem("aura_products");
-    if (!saved) {
-        localStorage.setItem("aura_products", JSON.stringify(INITIAL_PRODUCTS));
-        return INITIAL_PRODUCTS;
+// --- Storage Utilities ---
+const StoreDB = {
+    getProducts() {
+        const stored = localStorage.getItem('aura_products');
+        if (!stored) {
+            localStorage.setItem('aura_products', JSON.stringify(INITIAL_PRODUCTS));
+            return INITIAL_PRODUCTS;
+        }
+        return JSON.parse(stored);
+    },
+    saveProducts(products) {
+        localStorage.setItem('aura_products', JSON.stringify(products));
+    },
+    addProduct(product) {
+        const products = this.getProducts();
+        products.unshift(product);
+        this.saveProducts(products);
+    },
+    deleteProduct(id) {
+        let products = this.getProducts();
+        products = products.filter(p => p.id !== id);
+        this.saveProducts(products);
+    },
+    getOrders() {
+        const stored = localStorage.getItem('aura_orders');
+        return stored ? JSON.parse(stored) : [];
+    },
+    saveOrder(order) {
+        const orders = this.getOrders();
+        orders.unshift(order);
+        localStorage.setItem('aura_orders', JSON.stringify(orders));
     }
-    return JSON.parse(saved);
-}
-
-function saveStoredProducts(products) {
-    localStorage.setItem("aura_products", JSON.stringify(products));
-}
+};
