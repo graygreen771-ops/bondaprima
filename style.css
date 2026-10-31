@@ -1,19 +1,40 @@
-/* Custom smooth scroll and polish */
+/**
+ * AURA VOGUE - Custom Typography & Micro-Interactions
+ */
+
 html {
     scroll-behavior: smooth;
 }
 
 body {
+    background-color: #0A0A0A;
+    color: #F5F5F5;
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-h1, h2, h3, .font-serif {
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
 }
 
-/* Custom transitions */
-.transition-all {
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #262626;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #D4AF37;
+}
+
+/* Subtle Transitions */
+button, a, input, select, textarea {
+    transition: all 0.3s ease;
 }
