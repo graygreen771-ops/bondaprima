@@ -2,7 +2,7 @@ const STORE_CONFIG = {
     storeName: "AURA VOGUE",
     tagline: "Redefining Modern Minimalist Luxury",
     currency: "ETB",
-    whatsappNumber: "+251911234567", // Replace with your business WhatsApp number
+    whatsappNumber: "+251911234567", // Replace with your WhatsApp number
     telebirrNumber: "0911234567",
     cbeAccount: "1000123456789",
     cbeAccountName: "Aura Vogue Fashion",
@@ -13,7 +13,8 @@ const STORE_CONFIG = {
     }
 };
 
-const PRODUCTS = [
+// Initial products fallback if localStorage is empty
+const INITIAL_PRODUCTS = [
     {
         id: 1,
         name: "Minimalist Oversized Linen Shirt",
@@ -45,21 +46,19 @@ const PRODUCTS = [
         category: "Men",
         image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=800&auto=format&fit=crop",
         description: "Crisp pleats and a relaxed tailored fit for sophisticated comfort."
-    },
-    {
-        id: 5,
-        name: "Silk Blend Evening Slip Dress",
-        price: 4500,
-        category: "Women",
-        image: "https://images.unsplash.com/photo-1502716119720-b23a93e5fb1b?q=80&w=800&auto=format&fit=crop",
-        description: "Luxurious sheen with delicate straps for evening elegance."
-    },
-    {
-        id: 6,
-        name: "Heavyweight Boxy Hoodie",
-        price: 3100,
-        category: "Unisex",
-        image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=800&auto=format&fit=crop",
-        description: "Ultra-soft cotton fleece with a structured, premium drop shoulder."
     }
 ];
+
+// Helper to get products (checks localStorage first, falls back to INITIAL_PRODUCTS)
+function getStoredProducts() {
+    const saved = localStorage.getItem("aura_products");
+    if (!saved) {
+        localStorage.setItem("aura_products", JSON.stringify(INITIAL_PRODUCTS));
+        return INITIAL_PRODUCTS;
+    }
+    return JSON.parse(saved);
+}
+
+function saveStoredProducts(products) {
+    localStorage.setItem("aura_products", JSON.stringify(products));
+}
