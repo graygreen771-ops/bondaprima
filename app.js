@@ -1,4 +1,4 @@
-// Initialize Store UI from config
+// Initialize Store UI from config & dynamic localStorage products
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".footer-store-name").forEach(el => el.textContent = STORE_CONFIG.storeName);
     document.getElementById("store-logo-name").textContent = STORE_CONFIG.storeName;
@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("social-tt").href = STORE_CONFIG.socials.tiktok;
     }
 
-    renderProducts(PRODUCTS);
+    const products = getStoredProducts();
+    renderProducts(products);
     updateCartCount();
 
     // Mobile Menu Toggle
@@ -96,7 +97,6 @@ function renderProducts(productsToRender) {
 
 // Filter Categories
 function filterCategory(category) {
-    // Update active button styles
     const buttons = document.querySelectorAll("#filter-buttons button");
     buttons.forEach(btn => {
         if(btn.textContent.trim() === category || (category === 'All' && btn.textContent.trim() === 'All')) {
@@ -106,10 +106,11 @@ function filterCategory(category) {
         }
     });
 
+    const products = getStoredProducts();
     if(category === "All") {
-        renderProducts(PRODUCTS);
+        renderProducts(products);
     } else {
-        const filtered = PRODUCTS.filter(p => p.category === category);
+        const filtered = products.filter(p => p.category === category);
         renderProducts(filtered);
     }
 }
@@ -124,7 +125,8 @@ function toggleCart() {
 }
 
 function addToCart(productId) {
-    const product = PRODUCTS.find(p => p.id === productId);
+    const products = getStoredProducts();
+    const product = products.find(p => p.id === productId);
     const existing = cart.find(item => item.id === productId);
 
     if(existing) {
@@ -135,7 +137,7 @@ function addToCart(productId) {
 
     saveCart();
     updateCartCount();
-    toggleCart(); // Open drawer to show item added
+    toggleCart();
 }
 
 function updateQuantity(productId, delta) {
@@ -221,12 +223,10 @@ function handleCheckoutSubmit(e) {
     const cleanNumber = STORE_CONFIG.whatsappNumber.replace(/[^0-9]/g, '');
     const whatsappUrl = `https://wa.me/${cleanNumber}?text=${encodedMessage}`;
 
-    // Clear cart and close modals
     cart = [];
     saveCart();
     updateCartCount();
     document.getElementById("checkout-modal").classList.add("hidden");
 
-    // Open WhatsApp
     window.open(whatsappUrl, '_blank');
 }
