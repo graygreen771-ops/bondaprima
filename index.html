@@ -48,9 +48,9 @@
                 <a href="#contact" class="hover:text-brand-accent transition-colors">Contact</a>
             </nav>
 
-            <!-- Actions (Search & Cart) -->
+            <!-- Actions (Cart & Admin Link) -->
             <div class="flex items-center space-x-5">
-                <button id="search-btn" class="text-xl hover:text-brand-accent transition-colors"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <a href="admin.html" title="Admin Dashboard" class="text-lg hover:text-brand-accent transition-colors"><i class="fa-solid fa-gauge-high"></i></a>
                 <button id="cart-toggle-btn" class="relative text-xl hover:text-brand-accent transition-colors">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span id="cart-count" class="absolute -top-2 -right-2 bg-brand-accent text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
@@ -64,6 +64,7 @@
             <a href="#shop" class="block hover:text-brand-accent">Shop</a>
             <a href="#categories" class="block hover:text-brand-accent">Categories</a>
             <a href="#contact" class="block hover:text-brand-accent">Contact</a>
+            <a href="admin.html" class="block text-brand-accent font-bold">Admin Dashboard</a>
         </div>
     </header>
 
@@ -74,7 +75,7 @@
         </div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
             <div class="max-w-xl space-y-6">
-                <span id="store-tagline" class="text-brand-accent uppercase tracking-widest text-xs font-bold tracking-widest bg-white/10 px-3 py-1.5 rounded">Redefining Modern Luxury</span>
+                <span id="store-tagline" class="text-brand-accent uppercase tracking-widest text-xs font-bold bg-white/10 px-3 py-1.5 rounded">Redefining Modern Luxury</span>
                 <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">Timeless Design, Uncompromising Quality.</h1>
                 <p class="text-gray-300 text-base md:text-lg">Discover curated capsule collections designed for the modern tastemaker.</p>
                 <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
@@ -122,7 +123,7 @@
             </div>
             <!-- Category Filter Buttons -->
             <div class="flex flex-wrap gap-2 mt-4 md:mt-0" id="filter-buttons">
-                <button onclick="filterCategory('All')" class="px-4 py-2 text-sm font-medium bg-brand-dark text-white rounded-sm active-filter">All</button>
+                <button onclick="filterCategory('All')" class="px-4 py-2 text-sm font-medium bg-brand-dark text-white rounded-sm">All</button>
                 <button onclick="filterCategory('Men')" class="px-4 py-2 text-sm font-medium bg-gray-200 text-brand-dark hover:bg-gray-300 rounded-sm">Men</button>
                 <button onclick="filterCategory('Women')" class="px-4 py-2 text-sm font-medium bg-gray-200 text-brand-dark hover:bg-gray-300 rounded-sm">Women</button>
                 <button onclick="filterCategory('Unisex')" class="px-4 py-2 text-sm font-medium bg-gray-200 text-brand-dark hover:bg-gray-300 rounded-sm">Unisex</button>
@@ -225,6 +226,7 @@
                     <li><a href="#home" class="hover:text-white">Home</a></li>
                     <li><a href="#shop" class="hover:text-white">Shop Collection</a></li>
                     <li><a href="#categories" class="hover:text-white">Categories</a></li>
+                    <li><a href="admin.html" class="hover:text-brand-accent font-semibold">Admin Panel</a></li>
                 </ul>
             </div>
             <div>
